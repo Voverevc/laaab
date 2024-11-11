@@ -1,0 +1,50 @@
+#include<stdio.h>
+#include<locale.h>
+#include<math.h>
+#pragma warning(disable:4996)
+double factorial(int n)
+{
+	if (n == 0) return 1;
+	double f = 1.0;
+	for (int i = 1; i <= n; i++) {
+		f *= i;
+	}
+	return f;
+}
+double sin_n(double x, int N)
+{
+	double sum = 0.0;
+	for (int k = 0; k < N; k++) {
+		double term = (pow(-1, (k - 1)) * pow(x, 2 * k + 1)) / factorial(2 * k + 1);
+		sum += term;
+	}
+	return sum;
+}
+
+double sin_eps(double x, double eps)
+{
+	double sum = 0.0, term;
+	int k = 0;
+	do {
+		term = (pow(-1, k - 1) * pow(x, 2 * k + 1)) / factorial(2 * k + 1);
+		sum += term;
+		k++;
+	} while (fabs(term) > eps);
+	return sum;
+}
+double main(void) {
+	double x, r, k,  e;
+	setlocale(LC_ALL, "RUS");
+	printf("Введите Х:");
+	scanf("%lf", &x);
+	printf("Введите e:");
+	scanf("%lf", &e);
+	double result_lib = sin(x);
+	double result_n = sin_n(x, 10);
+	double result_eps = sin_eps(x, 0.0001);	
+
+	printf("Стандартная библиотека: %f\n", result_lib);
+	printf("Ряд с заданной точностью: %f\n", result_eps);
+	printf("Ряд с N = 10: %f\n", result_n);
+}
+

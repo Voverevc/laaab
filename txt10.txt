@@ -1,0 +1,32 @@
+#include<stdio.h>
+#include<locale.h>
+#include<math.h>
+#pragma warning(disable:4996)
+double fa(double x)
+{
+	double y1;
+	if (x <= 3)
+		y1 = pow(x, 2) - 3 * x + 9;
+	else
+		y1 = 1 / (pow(x, 3) + 3);
+	return y1;
+}
+double fa2(double x, double e)
+{
+	double y2;
+	y2 = x * (pow(e, pow(sin(x), 2)));
+	return y2;
+}
+double main(void)
+{
+	double r, k, x, e;
+	setlocale(LC_ALL, "RUS");
+	printf("Введите Х:");
+	scanf("%lf", &x);
+	printf("Введите e:");
+	scanf("%lf", &e);
+	r = fa((double)x);
+	k = fa2((double)x, (double)e);
+	printf("y1 = %lf \ny2 = %lf\n", r, k);
+	printf("Произведение = %lf\nРазность квадратов = %lf\nУдвоенная сумма = %lf\n", r * k, pow(r, 2) - pow(k, 2), pow((r + k), 2));
+}
