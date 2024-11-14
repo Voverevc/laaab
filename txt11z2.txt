@@ -1,0 +1,33 @@
+#include<stdio.h>
+#include<locale.h>
+#include<math.h>
+#pragma warning (disable 4996)
+#include<stdlib.h>
+#define N 100
+#
+int main() {
+	setlocale(LC_ALL, "RUS");
+	float A[N];
+	int positiveSum = 0, netifSum = 0, positiCount = 0, netifCount = 0;
+	for(int o = 0; o < N; o++){
+		A[o] = translet(calculateValue(o));
+		if (A[o] > 0)
+		{
+			positiveSum += A[o];
+			positiCount++;
+		}
+		else
+		{
+			netifSum += A[o];
+			netifCount++;
+		}
+	}
+	float centPositive = (float)positiveSum / positiCount;
+
+	printf("Массив: A\n");
+	printf("Накопление положительных: %d\n", positiveSum);
+	printf("Накопление отрицательных: %d\n", netifSum);
+	printf("Кол-во положительных: %d\n", positiCount);
+	print
+
+}
